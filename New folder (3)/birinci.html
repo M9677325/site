@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Musa Sürprizi 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    body::after {
+      content: "";
+      display: block;
+      height: 2000px;
+    }
+
+    .slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 20px;
+      margin-top: 50px;
+    }
+
+    .image-row img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0 15px 0;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .button {
+      background-color: #ff6f91;
+      color: #fff;
+      border: none;
+      padding: 15px 35px;
+      font-size: 1.3em;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: transform 0.2s, background-color 0.3s, left 0.3s, top 0.3s;
+      position: relative;
+    }
+
+    .button:hover {
+      background-color: #ff4c68;
+      transform: scale(1.1);
+    }
+
+    #slide2 img {
+      width: 220px;
+      height: 220px;
+      margin-top: 20px;
+      border-radius: 20px;
+      border: 4px solid white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    #slide2 p {
+      font-size: 1.2em;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="slide1" class="slide">
+    <div class="image-row">
+      <img src="mmm.png" alt="Bizden bir anı 💞">
+      <img src="bbb.png" alt="Birlikte gülüşümüz 💫">
+    </div>
+    <h1>Musa’yı seviyor musun? 💖</h1>
+    <div class="button-row">
+      <button class="button" onclick="goToSlide2()">Evet 😍</button>
+      <button id="noBtn" class="button" onclick="noButtonClick()">Hayır 🙃</button>
+    </div>
+  </div>
+
+  <div id="slide2" class="slide" style="display:none;">
+    <h1>Sürprizim burada 🎶💌</h1>
+    <img src="frame.png" alt="YouTube Music Playlist QR">
+    <p>QR’ı okut → ve <b>“bizim şarkılarımızı”</b> dinlemeye başla 💕</p>
+  </div>
+
+  <script>
+    function goToSlide2() {
+      document.getElementById('slide1').style.display = 'none';
+      document.getElementById('slide2').style.display = 'flex';
+    }
+
+    let noClickCount = 0;
+    function noButtonClick() {
+      noClickCount++;
+      const btn = document.getElementById("noBtn");
+      const btnWidth = btn.offsetWidth;
+      const btnHeight = btn.offsetHeight;
+      const padding = 10;
+      const maxX = window.innerWidth - btnWidth - padding;
+      const maxY = window.innerHeight - btnHeight - padding;
+      const minX = padding;
+      const minY = padding;
+
+      if (noClickCount <= 5) {
+        const x = Math.floor(Math.random() * (maxX - minX + 1) + minX);
+        const y = Math.floor(Math.random() * (maxY - minY + 1) + minY);
+        btn.style.position = "absolute";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+      } else {
+        window.location.href = "ikinci.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
